@@ -91,7 +91,7 @@ def respond_with_help
   reply = <<END
 Type `#{bot_username} help` to see the message you're currently looking at.
 Type `#{bot_username} show` to show the upcoming days that have already been clamied.
-Type `#{bot_username} claim <date>` to claim a date. e.g. `#{bot_username} claim next wednesday` or `#{bot_username} claim May 8th 2016`.
+Type `#{bot_username} claim <date>` to claim a date. e.g. `#{bot_username} claim next wednesday` or `#{bot_username} claim 2016-05-08`.
 Type `#{bot_username} unclaim <date>` to un-claim a date.
 END
 end
