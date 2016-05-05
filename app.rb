@@ -117,7 +117,13 @@ def respond_with_list
     if user_id.nil? || Date.parse(claimed_date) < Date.new
       remove_claim(claimed_date)
     else
-      claims << { date: claimed_date, user_id: user_id }
+      insert_at = claims.length
+      claims.each do |claim|
+        if Date.parse(claim.date) > Date.parse(claimed_date)
+          insert_at = claims.find_index(claim)
+        end
+      end
+      claims.insert(insert_at, { date: claimed_date, user_id: user_id })
     end
   }
 
