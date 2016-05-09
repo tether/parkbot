@@ -130,7 +130,7 @@ end
 
 def find_claim_insert(claims, claimed_date)
   claims.each_with_index do |claim, index|
-    if Date.parse(claim.date) > Date.parse(claimed_date)
+    if Date.parse(claim[:date]) > Date.parse(claimed_date)
       return index
     end
   end
