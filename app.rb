@@ -83,7 +83,7 @@ end
 
 def respond_with_what(params)
   name = get_slack_name(params[:user_id])
-  "What do you want #{name}? I don't understand what you seed. Beep boop."
+  "What do you want #{name}? I don't understand what you said. Beep boop."
 end
 
 def respond_with_help
