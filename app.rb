@@ -163,6 +163,11 @@ def respond_with_new_claim(params, date_to_claim)
   if date.nil?
     return respond_error
   end
+
+  if date < Date.today.to_time
+    return "Sorry, but you cannot claim a date in the past. Unless you're a 4th dimensinoal mechanical automatron like myself. Beep boop beep."
+  end
+
   key = "claimed_date:#{format_date_for_key(date)}"
   name = get_slack_name(params[:user_id])
 
