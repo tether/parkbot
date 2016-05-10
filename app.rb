@@ -117,7 +117,7 @@ def respond_with_list
     if user_id.nil? || Date.parse(claimed_date) < Date.new
       remove_claim(claimed_date)
     else
-      claims << { date: claimed_date, user_id: user_id }
+      claims.insert(find_claim_insert(claims, claimed_date), { date: claimed_date, user_id: user_id })
     end
   }
 
@@ -126,6 +126,16 @@ def respond_with_list
   else
     claims.map {|claim| name = get_slack_name(claim[:user_id]); "#{claim[:date]} - #{name}"}.join("\n")
   end
+end
+
+def find_claim_insert(claims, claimed_date)
+  claims.each_with_index do |claim, index|
+    if Date.parse(claim[:date]) > Date.parse(claimed_date)
+      return index
+    end
+  end
+
+  claims.length
 end
 
 def is_channel_blacklisted?(channel_name)
