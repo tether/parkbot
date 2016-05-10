@@ -114,9 +114,7 @@ def respond_with_list
 
     user_id = get_user_on_date(claimed_date)
 
-    if user_id.nil? || Date.parse(claimed_date) < Date.new
-      remove_claim(claimed_date)
-    else
+    if !user_id.nil? && Date.parse(claimed_date) >= Date.today
       claims.insert(find_claim_insert(claims, claimed_date), { date: claimed_date, user_id: user_id })
     end
   }
